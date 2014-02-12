@@ -93,14 +93,13 @@
         </h3>
         <ul>
             <li>reverse proxies help service-oriented architectures (SOA)</li>
-            <li>load balancing at routing level</li>
             <li>We want to modify http headers arbitrarily and easy</li>
             <li>Move shared services above SOA</li>
             <li><p>Current solutions can be hard to setup or modify,</p> e.g. nginx needs to be configured in C, recompiled
                 and restarted
             </li>
-            <li>There is no neat solution in Ruby</li>
             <li>Provide easy setup of SOA for developers</li>
+            <li>There is no neat solution in Ruby</li>
         </ul>
       </article>
 
@@ -117,6 +116,7 @@
                 <li>Request routing should be possible by any http header information</li>
                 <li>Headers should be modifiable based on selected server</li>
                 <li>Servers should be configured independently of each other</li>
+                <li>Do Routing and balancing at the same time</li>
             </ul>
 
         </article>
@@ -233,28 +233,30 @@
           <h3>
               Restrictions
           </h3>
+          <ul> Design decisions:
+              <ul>
+                  <li></li>
+                  <li>Balance per request, not per connection</li>
+                  <li>The proxy doesn't use persistent connections to servers</li>
+              </ul>
+              &#8594; Bad performance for high server&#8596;proxy latency
+
+          </ul>
+      </article>
+
+      <article>
+          <h3>
+              Restrictions
+          </h3>
           <ul>
               <li>First of all: Use it in the right environment!</li>
               <ul>Performance killers are
                   <ul>
                   <li>Latency to servers</li>
                   <li>Server configuration</li>
+                  <li>Datasize</li>
               </ul></ul>
               <li> &#8594; It's made for low latency local environments</li>
-          </ul>
-      </article>
-      <article>
-          <h3>
-              Restrictions
-          </h3>
-          <ul> Design decisions:
-              <ul>
-              <li></li>
-              <li>Balance per request, not per connection</li>
-              <li>The proxy doesn't use persistent connections to servers</li>
-          </ul>
-              &#8594; Bad performance for high server&#8596;proxy latency
-
           </ul>
       </article>
 
@@ -363,7 +365,18 @@
         <h3>
           Performance
         </h3>
-
+        <ul>Based on
+            <li>TCP Handshake overhead</li>
+            <li>Time required to match server</li>
+            <li>Time required to parse message data</li>
+        </ul>
+          <ul>Overhead for 40kb of Lorem Ipsum, local environment
+              using boom(B) or ApacheBench(A) and a Sinatra running thin 1.5.1
+              <ul><li>(B) Concurrency 1 over 10.000 requests: ~1.7ms</li>
+              <li>(B) Concurrency 100 over 100.000 requests: ~1,0ms</li>
+              <li>(A) Concurrency 10, over 10.000 requests: ~1,0ms </li> </ul>
+              (B) 512kb of Lorem Ipsum ~5ms overhead
+          </ul>
       </article>
 
 
