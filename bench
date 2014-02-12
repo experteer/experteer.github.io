@@ -1,0 +1,310 @@
+boom http://localhost:4567/ -c 1 -n 10000
+/usr/local/lib/python2.7/dist-packages/boom/_boom.py:9: UserWarning: libevent version mismatch: system version is '2.0.21-stable' but this gevent is compiled against '2.0.19-stable'
+  from gevent import monkey
+Server Software: thin 1.5.1 codename Straight Razor
+Running GET http://127.0.0.1:4567/
+	Host: localhost
+Running 10000 times per 1 workers.
+
+-------- Errors --------
+
+-------- Results --------
+Successful calls		10000
+Total time       		21.1714 s
+Average          		0.0020 s
+Fastest          		0.0015 s
+Slowest          		0.0366 s
+Amplitude        		0.0351 s
+RPS              		472
+BSI              		Pretty good
+
+-------- Status codes --------
+Code 200          		10000 times.
+
+-------- Legend --------
+RPS: Request Per Second
+BSI: Boom Speed Index
+
+
+
+
+
+boom http://localhost:4566/ -c 1 -n 10000
+/usr/local/lib/python2.7/dist-packages/boom/_boom.py:9: UserWarning: libevent version mismatch: system version is '2.0.21-stable' but this gevent is compiled against '2.0.19-stable'
+  from gevent import monkey
+Server Software: thin 1.5.1 codename Straight Razor
+Running GET http://127.0.0.1:4566/
+	Host: localhost
+Running 10000 times per 1 workers.
+
+-------- Errors --------
+
+-------- Results --------
+Successful calls		10000
+Total time       		38.2611 s
+Average          		0.0037 s
+Fastest          		0.0023 s
+Slowest          		0.0386 s
+Amplitude        		0.0363 s
+RPS              		261
+BSI              		Pretty good
+
+-------- Status codes --------
+Code 200          		10000 times.
+
+-------- Legend --------
+RPS: Request Per Second
+BSI: Boom Speed Index
+
+
+
+
+boom http://localhost:4567/ -c 100 -n 100000
+/usr/local/lib/python2.7/dist-packages/boom/_boom.py:9: UserWarning: libevent version mismatch: system version is '2.0.21-stable' but this gevent is compiled against '2.0.19-stable'
+  from gevent import monkey
+Server Software: thin 1.5.1 codename Straight Razor
+Running GET http://127.0.0.1:4567/
+	Host: localhost
+Running 100000 times per 100 workers.
+
+
+-------- Errors --------
+
+-------- Results --------
+Successful calls		100000
+Total time       		163.8275 s
+Average          		0.1239 s
+Fastest          		0.0288 s
+Slowest          		0.3681 s
+Amplitude        		0.3393 s
+RPS              		610
+BSI              		Woooooo Fast
+
+-------- Status codes --------
+Code 200          		100000 times.
+
+-------- Legend --------
+RPS: Request Per Second
+BSI: Boom Speed Index
+
+
+
+
+
+
+
+
+boom http://localhost:4566/ -c 100 -n 100000
+/usr/local/lib/python2.7/dist-packages/boom/_boom.py:9: UserWarning: libevent version mismatch: system version is '2.0.21-stable' but this gevent is compiled against '2.0.19-stable'
+  from gevent import monkey
+Server Software: thin 1.5.1 codename Straight Razor
+Running GET http://127.0.0.1:4566/
+	Host: localhost
+Running 100000 times per 100 workers.
+
+-------- Errors --------
+
+-------- Results --------
+Successful calls		100000
+Total time       		265.1050 s
+Average          		0.2243 s
+Fastest          		0.0286 s
+Slowest          		0.5094 s
+Amplitude        		0.4808 s
+RPS              		377
+BSI              		Pretty good
+
+-------- Status codes --------
+Code 200          		100000 times.
+
+-------- Legend --------
+RPS: Request Per Second
+BSI: Boom Speed Index
+
+
+
+
+
+
+This is ApacheBench, Version 2.3 <$Revision: 1430300 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking localhost (be patient)
+Completed 1000 requests
+Completed 2000 requests
+Completed 3000 requests
+Completed 4000 requests
+Completed 5000 requests
+Completed 6000 requests
+Completed 7000 requests
+Completed 8000 requests
+Completed 9000 requests
+Completed 10000 requests
+Finished 10000 requests
+
+
+Server Software:        thin
+Server Hostname:        localhost
+Server Port:            4567
+
+Document Path:          /
+Document Length:        41106 bytes
+
+Concurrency Level:      10
+Time taken for tests:   5.175 seconds
+Complete requests:      10000
+Failed requests:        0
+Write errors:           0
+Keep-Alive requests:    10000
+Total transferred:      413500000 bytes
+HTML transferred:       411060000 bytes
+Requests per second:    1932.29 [#/sec] (mean)
+Time per request:       5.175 [ms] (mean)
+Time per request:       0.518 [ms] (mean, across all concurrent requests)
+Transfer rate:          78027.56 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.0      0       0
+Processing:     2    5   5.1      4      32
+Waiting:        1    5   5.1      4      32
+Total:          2    5   5.1      4      32
+
+Percentage of the requests served within a certain time (ms)
+  50%      4
+  66%      4
+  75%      4
+  80%      4
+  90%      4
+  95%     25
+  98%     26
+  99%     27
+ 100%     32 (longest request)
+
+
+
+ab -k -c 10 -n 10000 http://localhost:4566/
+This is ApacheBench, Version 2.3 <$Revision: 1430300 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking localhost (be patient)
+Completed 1000 requests
+Completed 2000 requests
+Completed 3000 requests
+Completed 4000 requests
+Completed 5000 requests
+Completed 6000 requests
+Completed 7000 requests
+Completed 8000 requests
+Completed 9000 requests
+Completed 10000 requests
+Finished 10000 requests
+
+
+Server Software:        thin
+Server Hostname:        localhost
+Server Port:            4566
+
+Document Path:          /
+Document Length:        41106 bytes
+
+Concurrency Level:      10
+Time taken for tests:   14.976 seconds
+Complete requests:      10000
+Failed requests:        0
+Write errors:           0
+Keep-Alive requests:    10000
+Total transferred:      413700000 bytes
+HTML transferred:       411060000 bytes
+Requests per second:    667.73 [#/sec] (mean)
+Time per request:       14.976 [ms] (mean)
+Time per request:       1.498 [ms] (mean, across all concurrent requests)
+Transfer rate:          26976.59 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.0      0       0
+Processing:     3   15   9.0     11     105
+Waiting:        3   15   9.0     11     105
+Total:          3   15   9.0     11     105
+
+Percentage of the requests served within a certain time (ms)
+  50%     11
+  66%     12
+  75%     14
+  80%     24
+  90%     29
+  95%     33
+  98%     36
+  99%     49
+ 100%    105 (longest request)
+
+
+
+512kb of lorem ipsum:
+
+proxy:
+
+boom http://localhost:4567/ -c 20 -n 10000
+/usr/local/lib/python2.7/dist-packages/boom/_boom.py:9: UserWarning: libevent version mismatch: system version is '2.0.21-stable' but this gevent is compiled against '2.0.19-stable'
+  from gevent import monkey
+Server Software: thin 1.5.1 codename Straight Razor
+Running GET http://127.0.0.1:4567/
+	Host: localhost
+Running 10000 times per 20 workers.
+
+-------- Errors --------
+
+-------- Results --------
+Successful calls		10000
+Total time       		83.6047 s
+Average          		0.1573 s
+Fastest          		0.0213 s
+Slowest          		0.2808 s
+Amplitude        		0.2595 s
+RPS              		119
+BSI              		Pretty good
+
+-------- Status codes --------
+Code 200          		10000 times.
+
+-------- Legend --------
+RPS: Request Per Second
+BSI: Boom Speed Index
+
+
+sinatra:
+
+
+boom http://localhost:4568/ -c 20 -n 10000
+/usr/local/lib/python2.7/dist-packages/boom/_boom.py:9: UserWarning: libevent version mismatch: system version is '2.0.21-stable' but this gevent is compiled against '2.0.19-stable'
+  from gevent import monkey
+Server Software: thin 1.5.1 codename Straight Razor
+Running GET http://127.0.0.1:4568/
+	Host: localhost
+Running 10000 times per 20 workers.
+
+-------- Errors --------
+
+-------- Results --------
+Successful calls		10000
+Total time       		34.4506 s
+Average          		0.0575 s
+Fastest          		0.0148 s
+Slowest          		0.0899 s
+Amplitude        		0.0751 s
+RPS              		290
+BSI              		Pretty good
+
+-------- Status codes --------
+Code 200          		10000 times.
+
+-------- Legend --------
+RPS: Request Per Second
+BSI: Boom Speed Index
+
+
+
+
