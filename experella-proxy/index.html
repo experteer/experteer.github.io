@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+
+<!--
+  Google HTML5 slide template
+
+  Authors: Luke Mahé (code)
+           Marcin Wichary (code and design)
+           
+           Dominic Mazzoni (browser compatibility)
+           Charles Chen (ChromeVox support)
+
+  URL: http://code.google.com/p/html5slides/
+-->
+
+<html>
+  <head>
+    <title>Experella-Proxy Presentation</title>
+
+    <meta charset='utf-8'>
+    <script
+      src='http://html5slides.googlecode.com/svn/trunk/slides.js'></script>
+      <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+      <script src="js/jquery.Jcrop.min.js"></script>
+      <link rel="stylesheet" href="css/jquery.Jcrop.css" type="text/css" />
+
+      <script language="Javascript">
+          timeout = null
+          function showCoords(c)
+          {
+              // variables can be accessed here as
+              // c.x, c.y, c.x2, c.y2, c.w, c.h
+              if (timeout != null)
+                clearTimeout(timeout);
+
+              timeout = setTimeout(function() {
+                console.log("change url")
+                $("#out").attr("src", "/blob/crop_"+c.w+"x"+c.h+"+"+c.x+"+"+c.y+"/presentation/crop.png")
+                $("#croplink").text("/blob/crop_"+c.w+"x"+c.h+"+"+c.x+"+"+c.y+"/presentation/crop.png")
+              }, 150);
+          };
+      </script>
+  </head>
+  
+  <style>
+    /* Your individual styles here, or just use inline styles if that’s
+       what you want. */
+    .experteer {
+      background: white url('experteer.png') 50% 50% no-repeat !important;
+    }
+
+    .slides.template-default > article:not(.nobackground):not(.biglogo) {
+      background: url('experteer.png') 690px 625px no-repeat !important;  
+      
+      background-color: white !important;  
+    }
+    
+  </style>
+
+  <body style='display: none'>
+
+    <section class='slides layout-regular template-default'>
+      
+      <!-- Your slides (<article>s) go here. Delete or comment out the
+           slides below. -->
+        
+        
+      
+      <article class='biglogo experteer'>
+      </article>
+
+      <article>
+        <h1>
+          Experella-Proxy
+        </h1>
+
+          <h3>a ruby load balancing reverse proxy
+          </h3>
+
+          <p>
+          Dennis-Florian Herr
+          <br>
+              Feb, 12 2014
+          </p>
+      </article>
+      
+      <article>
+        <h1>Motivation</h1>
+       </article>
+      
+      <article>
+        <h3>
+          Motivation
+        </h3>
+        <ul>
+            <li>reverse proxies help service-oriented architectures (SOA)</li>
+            <li>We want to modify http headers arbitrarily and easy</li>
+            <li>Move shared services above SOA</li>
+            <li><p>Current solutions can be hard to setup or modify,</p> e.g. nginx needs to be configured in C, recompiled
+                and restarted
+            </li>
+            <li>Provide easy setup of SOA for developers</li>
+            <li>There is no neat solution in Ruby</li>
+        </ul>
+      </article>
+
+        <article>
+            <h1>Idea</h1>
+        </article>
+
+        <article>
+            <h3>Idea</h3>
+            <ul>
+                <li><p>Let's write a balancing reverse proxy in ruby</p>
+                    <p>based on EventMachine</p>
+                configurable in a pure ruby DSL</li>
+                <li>Request routing should be possible by any http header information</li>
+                <li>Headers should be modifiable based on selected server</li>
+                <li>Servers should be configured independently of each other</li>
+                <li>Do Routing and balancing at the same time</li>
+            </ul>
+
+        </article>
+
+        <article>
+            <h1>Requirements</h1>
+        </article>
+
+        <article>
+            <h3>
+                Requirements
+            </h3>
+            <ul>
+                <li>High performance (<5ms overhead)</li>
+                <li>Handle many parallel connections (C10k problem solving)</li>
+                <li>HTTP header parsing before dispatching</li>
+                <li>Fair load balancing</li>
+                <li>Full HTTP standard (<a href="http://www.ietf.org/rfc/rfc2616.txt">RFC 2616</a>) compliance</li>
+            </ul>
+        </article>
+
+        <article>
+            <h3>
+                Requirements
+            </h3>
+            <h4>by RFC 2616 HTTP/1.1</h4>
+            <ul>
+            <li>use HTTP/1.1 correctly, even when talking to HTTP/1.0 clients</li>
+            <li>Remove Hop-by-hop headers</li>
+            <li>Handle bad framing</li>
+            <li>Handle absolute URLs correctly</li>
+            <li>Insert Via header</li>
+            <li>Support pipelining</li>
+            <li>Support chunked encoding - both ways</li>
+            <li>and some more. Good blog post: <a href="http://www.mnot.net/blog/2011/07/11/what_proxies_must_do">What proxies must do</a></li>
+            </ul>
+        </article>
+
+        <article>
+            <h1>Use cases</h1>
+        </article>
+
+        <article>
+            <h3>Use case: Development</h3>
+            <p>easily running multiple services</p>
+            <p>
+            <img src="images/usecase_dev1.png" width="700px"/>
+            </p>
+        </article>
+        <article>
+            <h3>Use case: Development</h3>
+            <p>run services with https</p>
+            <p>
+                <img src="images/usecase_dev2.png" width="700px"/>
+            </p>
+        </article>
+        <article>
+            <h3>Use case: Production</h3>
+            <p>Hiding and load balancing SOA</p>
+            <p>
+                <img src="images/usecase_prod1.png" width="700px"/>
+            </p>
+        </article>
+        <article>
+            <h3>Use case: Production</h3>
+            <p>push shared content/services above SOA</p>
+            <p>
+                <img src="images/usecase_prod2.png" width="700px"/>
+            </p>
+        </article>
+
+        <article>
+        <h3>Introducing</h3><h1> Experella-Proxy</h1>
+      </article>
+
+        <article>
+            <h1>
+               Highlights
+            </h1>
+        </article>
+
+        <article>
+            <h3>
+                Highlights
+            </h3>
+            <ul>
+                <li>Fast!  <2ms overhead for local 40kb of Lorem Ipsum</li>
+                <li>Fair load balancing based on server concurrency & occupation per request (not connection!)</li>
+                <li>Request header routing logic completely configurable for each server</li>
+                <li>Request header manipulation completely configurable for each server</li>
+            </ul>
+        </article>
+
+      <article>
+          <h3>
+              Highlights
+          </h3>
+          <ul>
+              <li>HTTP persistent connections and pipelining for clients</li>
+              <li>HTTP chunked encoding both ways</li>
+              <li>pure ruby!</li>
+              <li>fully documented (in english &#12483)</li>
+              <li>open source under MIT license</li>
+          </ul>
+      </article>
+
+      <article>
+          <h1>
+              Restrictions
+          </h1>
+      </article>
+
+      <article>
+          <h3>
+              Restrictions
+          </h3>
+          <ul> Design decisions:
+              <ul>
+                  <li></li>
+                  <li>Balance per request, not per connection</li>
+                  <li>The proxy doesn't use persistent connections to servers</li>
+              </ul>
+              &#8594; Bad performance for high server&#8596;proxy latency
+
+          </ul>
+      </article>
+
+      <article>
+          <h3>
+              Restrictions
+          </h3>
+          <ul>
+              <li>First of all: Use it in the right environment!</li>
+              <ul>Performance killers are
+                  <ul>
+                  <li>Latency to servers</li>
+                  <li>Server configuration</li>
+                  <li>Datasize</li>
+              </ul></ul>
+              <li> &#8594; It's made for low latency local environments</li>
+          </ul>
+      </article>
+
+
+        <article>
+            <h1>
+                How to use
+            </h1>
+        </article>
+      <article>
+          <h3>
+              How to use
+          </h3>
+          <ul>
+              <li>Simply install as gem</li>
+              <p>
+                 <img src="images/proxy-install.png" width="350px"/>
+              </p>
+              <li>Then init config template to local folder</li>
+              <p>
+                  <img src="images/proxy-init.png" width="350px"/>
+              </p>
+             template will be in ~/bla/proxy
+              <p></p>
+              <li>Start the proxy with the config file</li>
+              <p>
+                  <img src="images/proxy-start.png" width="700px"/>
+              </p>
+          </ul>
+      </article>
+
+      <article>
+            <h1>
+                How to config
+            </h1>
+        </article>
+      <article>
+          <h3>
+              How to config
+          </h3>
+          Servers
+          <ul>
+              <p>
+                  <img src="images/config_backend.png" width="700px"/>
+              </p>
+          </ul>
+      </article>
+      <article>
+          <h3>
+              How to config
+          </h3>
+          Proxy
+          <ul>
+              <p>
+                  <img src="images/config_proxy.png" width="700px"/>
+              </p>
+          </ul>
+      </article>
+      <article>
+          <h3>
+              How to config
+          </h3>
+          Proxy
+          <ul>
+              <p>
+                  <img src="images/config_proxy.png" width="700px"/>
+              </p>
+          </ul>
+          Logging
+          <ul>
+              <p>
+                  <img src="images/config_logger.png" width="700px"/>
+              </p>
+          </ul>
+      </article>
+      <article>
+          <h3>
+              How to config
+          </h3>
+          Proxy
+          <ul>
+              <p>
+                  <img src="images/config_proxy.png" width="700px"/>
+              </p>
+          </ul>
+          Logging
+          <ul>
+              <p>
+                  <img src="images/config_logger.png" width="700px"/>
+              </p>
+          </ul>
+          Timeout & Error pages
+          <ul>
+              <p>
+                  <img src="images/config_timeout_error.png" width="700px"/>
+              </p>
+          </ul>
+      </article>
+      <article>
+        <h1>
+          Performance
+        </h1>
+      </article>
+      
+      <article>
+        <h3>
+          Performance
+        </h3>
+        <ul>Based on
+            <li>TCP Handshake overhead</li>
+            <li>Time required to match server</li>
+            <li>Time required to parse message data</li>
+        </ul>
+          <ul>Overhead for 40kb of Lorem Ipsum, local environment
+              using boom(B) or ApacheBench(A) and a Sinatra running thin 1.5.1
+              <ul><li>(B) Concurrency 1 over 10.000 requests: ~1.7ms</li>
+              <li>(B) Concurrency 100 over 100.000 requests: ~1,0ms</li>
+              <li>(A) Concurrency 10, over 10.000 requests: ~1,0ms </li> </ul>
+              (B) 512kb of Lorem Ipsum ~5ms overhead
+          </ul>
+      </article>
+
+
+      <article>
+        <h1>
+          Going forward
+        </h1>
+      </article>
+      <article>
+          <h3>
+              Going forward
+          </h3>
+          <ul> New Features:
+             <ul>
+              <li>Self configuring backends</li>
+              <li>Easy middleware support</li> </ul>
+          </ul>
+          <ul> Improve matching performance:
+              <ul>
+                  <li>group similar servers</li>
+                  <li>allow a default server</li>
+                  <li>better solution than pure regexp</li>
+              </ul>
+          </ul>
+      </article>
+      <article>
+          <ul>
+              <p>
+                  <img src="images/questions.jpg" width="740px"/>
+              </p>
+          </ul>
+      </article>
+
+    </section>
+
+  </body>
+</html>
