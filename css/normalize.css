@@ -7,6 +7,7 @@
  */
 
 html {
+    color:#525b65;
     font-family: sans-serif; /* 1 */
     -ms-text-size-adjust: 100%; /* 2 */
     -webkit-text-size-adjust: 100%; /* 2 */
@@ -84,6 +85,9 @@ template {
 
 a {
     background: transparent;
+    color:#5596c8;
+    text-decoration: none;
+    font-weight: 500;
 }
 
 /**
@@ -129,8 +133,11 @@ dfn {
  */
 
 h1 {
-    font-size: 2em;
-    margin: 0.67em 0;
+    color: #b2cd0e;
+    line-height: 4.71429rem;
+    text-shadow: rgba(178,205,14,0.6) 0 0 1px;
+    font-weight: 100;
+    margin-bottom: 0.5rem;
 }
 
 /**

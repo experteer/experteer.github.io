@@ -12,8 +12,27 @@
 
 html {
     color: #222;
-    font-size: 1em;
-    line-height: 1.4;
+    font-family: Roboto, 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
+    font-size: 87.5%;
+    font-weight: 300;
+    height: 100%;
+    line-height: 22px;
+   
+}
+body{
+    padding-top: 60px;
+    background-image: url("images/homepage.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+header {
+    position: absolute;
+    height: 77px;
+    left: 0;
+    right: 0;
+    top: 0;
+    display: block;
+    border-bottom: 1px solid #e1e5ea;
 }
 
 /*
@@ -93,10 +112,26 @@ textarea {
 
 
 
+.inner { 
+    max-width: 984px;
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
 
 
+#wrapper {
 
-
+    display: block;
+    max-width: 984px;
+    position: relative;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 
 
@@ -249,6 +284,7 @@ textarea {
 
     img {
         max-width: 100% !important;
+
     }
 
     p,
