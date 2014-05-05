@@ -7,6 +7,7 @@
  */
 
 html {
+    color:#525b65;
     font-family: sans-serif; /* 1 */
     -ms-text-size-adjust: 100%; /* 2 */
     -webkit-text-size-adjust: 100%; /* 2 */
@@ -84,6 +85,10 @@ template {
 
 a {
     background: transparent;
+    color:rgb(82, 91, 101);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 150%;
 }
 
 /**
@@ -129,8 +134,14 @@ dfn {
  */
 
 h1 {
-    font-size: 2em;
-    margin: 0.67em 0;
+    color: #b2cd0e;
+    font-size: 3.0rem;
+    font-weight: 100;
+    line-height: 4.71429rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0rem;
+    padding-top: 15px;
+    text-shadow: 0 0 1px rgba(178, 205, 14, 0.6);
 }
 
 /**
