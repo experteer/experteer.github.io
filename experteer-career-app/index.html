@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<!--
+  Google HTML5 slide template
+
+  Authors: Luke Mahé (code)
+           Marcin Wichary (code and design)
+           
+           Dominic Mazzoni (browser compatibility)
+           Charles Chen (ChromeVox support)
+
+  URL: http://code.google.com/p/html5slides/
+-->
+
+<html>
+  <head>
+    <title>Experteer Career app</title>
+
+    <meta charset='utf-8'>
+    <script
+      src='http://html5slides.googlecode.com/svn/trunk/slides.js'></script>
+      <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+      <script src="js/jquery.Jcrop.min.js"></script>
+      <link rel="stylesheet" href="css/jquery.Jcrop.css" type="text/css" />
+
+      <script language="Javascript">
+          timeout = null
+          function showCoords(c)
+          {
+              // variables can be accessed here as
+              // c.x, c.y, c.x2, c.y2, c.w, c.h
+              if (timeout != null)
+                clearTimeout(timeout);
+
+              timeout = setTimeout(function() {
+                console.log("change url")
+                $("#out").attr("src", "/blob/crop_"+c.w+"x"+c.h+"+"+c.x+"+"+c.y+"/presentation/crop.png")
+                $("#croplink").text("/blob/crop_"+c.w+"x"+c.h+"+"+c.x+"+"+c.y+"/presentation/crop.png")
+              }, 150);
+          };
+      </script>
+  </head>
+  
+  <style>
+    /* Your individual styles here, or just use inline styles if that’s
+       what you want. */
+    .experteer {
+      background: white url('experteer.png') 50% 50% no-repeat !important;
+    }
+
+    .slides.template-default > article:not(.nobackground):not(.biglogo) {
+      background: url('experteer.png') 690px 625px no-repeat !important;  
+      
+      background-color: white !important;  
+    }
+    
+  </style>
+
+  <body style='display: none'>
+
+    <section class='slides layout-regular template-default'>
+      
+      <!-- Your slides (<article>s) go here. Delete or comment out the
+           slides below. -->
+        
+        
+      
+      <article class='biglogo experteer'>
+      </article>
+
+      <article>
+        <h1>
+          Experteer Career smartphone app
+        </h1>
+
+          <h3>Native+Web app
+          </h3>
+
+          <p>
+           Taras Struk
+          <br>
+              11 Mar. 2014
+          </p>
+      </article>
+      
+      <article>
+        <h1>Motivation</h1>
+       </article>
+      
+      <article>
+        <h3>
+          Motivation
+        </h3>
+        <ul>
+            <li>be present in the Apple and Google app markets</li>
+            <li>UX: better than web app in a browser</li>
+            <li>fast transition from the web architecture</li>
+            <li>share existing web-app frontend and backend</li>
+            <li>less native coding</li>
+            <li>benefit from native functions</li>
+        </ul>
+      </article>
+
+      <article>
+        <h1>Requirements</h1>
+       </article>
+
+        <article>
+            <h3>
+                Requirements: 1st
+            </h3>
+            <ul>
+                <li>The same (or better) as web user experience</li>
+                <li><p>Native functions:</p>
+                  <ul>
+                    <li>Geolocation</li>
+                    <li>Google analytics for Native apps</li>
+                    <li>Marketing campaigns mgmt: Distimo tool</li>
+                    <li>Next step: Push Notifications</li>
+                  </ul>
+                </li>
+            </ul>
+        </article>
+
+        <article>
+            <h3>
+               Requirements: 2nd 
+            </h3>
+            <ul>
+                <li>Offline scenario</li>
+                <li>low-quality networks support</li>
+                <li>Smooth scrolling</li>
+                <li>Continuous scrolling</li>
+                <li>fast Job-search navigation</li>
+                <li>secure user's data/passwords</li>
+                <li>All app attributes: icons, launch-images</li>
+            </ul>
+        </article>
+
+      <article>
+        <h1>Limitations</h1>
+       </article>
+
+        <article>
+            <h3>
+                Limitations
+            </h3>
+            <ul>
+                <li>No upsell hooks ( iOS )</li>
+                <li>No payment ( iOS )</li>
+                <li>No premium functions/jobs for basic accounts</li>
+            </ul>
+
+        </article>
+
+        <article>
+            <h1>Idea</h1>
+        </article>
+
+        <article>
+            <h3>Let's</h4>
+            <ul>
+                <li><p>... put existing web-app in a 'shell'</p>
+                    <p>that it looks and feels like a native app</p>
+                </li>
+                <li>... implement a "Bridge" to access native functions</li>
+                <li><p>... handle some init. tasks natively, e.g.</p>
+                  <ul>
+                    <li>Language and Country version detection</li>
+                    <li>Network request watch and react in case of problems</li>
+                  </ul>  
+                </li>
+            </ul>
+
+        </article>
+
+
+      
+        <article>
+            <h1>Use cases</h1>
+        </article>
+
+        <article>
+            <h3>Use case: Network unavailable</h3>
+            <p>Show "offline page"</p>
+            <p>during that, query current network status and retry the remote request</p>
+        </article>
+        
+        <article>
+            <h3>Use case: Network slow</h3>
+            <p>wait for remote request.</p>
+            <p>
+                If data does not start loading within reasonable timeout,
+            </p>
+            <p>show "offline page"</p>
+        </article>
+
+        <article>
+            <h3>Use case: Network problem during ajax</h3>
+            <p>
+                show alert/notification in current context
+            </p>
+        </article>
+        
+
+        <article>
+            <h3>Use case: remote page being loaded</h3>
+            <p>
+                show spinner during remote page transitions
+            </p>
+        </article>
+
+
+        <article>
+          <h3>Introducing</h3><h1>Apache Cordova</h1>
+          <h4>cordova.apache.org</h4>
+        </article>
+
+        <article>
+            <h3>
+                Cordova Highlights
+            </h3>
+            <p><quo>
+              <img src="images/cordova_bot.png" width="100px; text-align: left"/>
+              Apache Cordova is a set of device APIs that allow a mobile app developer to access native device functions</p>
+              </quo>   
+            <ul>
+                <li>... provides a platform-independend API 
+                  to load a bundled or remote HTML content into WebView</li>
+                <li>... provides a set of JavaScript libraries with device-specific native code</li>
+                <li>JavaScript APIs are consistent across multiple platforms</li>
+                
+            </ul>
+        </article>
+      
+      <article>
+          <h3>
+              Going forward
+          </h3>
+
+          <h4>Implementation + Launch plan</h4>
+          <ul>
+             <ul>
+              <li>iPhone iOS v. 6.1 +</li>
+              
+            </ul>
+          </ul>
+
+      </article>
+
+
+      <article>
+          <h3>
+              Going forward
+          </h3>
+
+          <ul>
+             <ul>
+              <li>Push notifications</li>
+              <li>Minimum profile</li> 
+              <li>Android &gt; 4.0 *webkit </li> 
+              <li>Moving presentation layer towards client (bundled HTML)</li>
+              <li>Service-Oriented achitecture</li> 
+            </ul>
+          </ul>
+
+      </article>
+
+      <article>
+          <ul>
+              <p>
+                  <img src="images/questions.jpg" width="740px"/>
+              </p>
+          </ul>
+      </article>
+
+    </section>
+
+  </body>
+</html>
