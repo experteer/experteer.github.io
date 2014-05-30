@@ -17,7 +17,7 @@ body {
   font-size: 30px;
   font-weight: normal;
   letter-spacing: -0.02em;
-  color: #111; }
+  color: rgb(51, 51, 51); }
 
 ::selection {
   color: white;
@@ -34,7 +34,7 @@ body {
 .reveal h5,
 .reveal h6 {
   margin: 0 0 20px 0;
-  color: #111;
+  color: rgb(51, 51, 51);
   font-family: "Montserrat", Impact, sans-serif;
   line-height: 0.9em;
   letter-spacing: -0.03em;
