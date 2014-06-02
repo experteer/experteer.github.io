@@ -135,13 +135,20 @@ dfn {
 
 h1 {
     color: #b2cd0e;
-    font-size: 3.0rem;
+    font-size: 48px;
     font-weight: 100;
-    line-height: 4.71429rem;
-    margin-bottom: 0.5rem;
+    line-height: 66.00006103515625px;
+    margin-bottom: 7px;
     margin-top: 0rem;
     padding-top: 15px;
     text-shadow: 0 0 1px rgba(178, 205, 14, 0.6);
+}
+h4{
+    color: rgb(103, 115, 127);
+    font-size: 19px;
+    font-weight: 300;
+    height: 32px;
+    margin-bottom: 10px;
 }
 
 /**
@@ -431,4 +438,12 @@ table {
 td,
 th {
     padding: 0;
+}
+
+h3{
+   color: rgb(82, 91, 101); 
+   font-size: 26px;
+   font-weight: 100;
+   text-shadow: rgba(82, 91, 101, 0.6) 0px 0px 1px;
+   padding-bottom: 12px;
 }
